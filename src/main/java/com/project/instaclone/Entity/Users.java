@@ -2,7 +2,7 @@ package com.project.instaclone.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import kakartaa.persistence.Id;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity(name = "Users")
