@@ -1,9 +1,9 @@
 package com.project.instaclone.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "Users")
 public class Users {
@@ -18,10 +18,8 @@ public class Users {
     private String name;
     private String profilePicture;
 
-
     public Users() {
     }
-
 
     public Users(int id, String userId, String userName, String name, String profilePicture) {
         this.id = id;
@@ -30,7 +28,6 @@ public class Users {
         this.name = name;
         this.profilePicture = profilePicture;
     }
-
 
     public int getId() {
         return this.id;
@@ -72,5 +69,4 @@ public class Users {
         this.profilePicture = profilePicture;
     }
 
-    
 }
