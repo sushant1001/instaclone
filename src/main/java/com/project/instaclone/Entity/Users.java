@@ -1,72 +1,38 @@
 package com.project.instaclone.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity(name = "Users")
 public class Users {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
     @NotNull
+    @Column(name = "USER_ID")
     private String userId;
+
+    @Column(name = "USER_NAME")
     private String userName;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "PROFILE_PICTURE")
     private String profilePicture;
-
-    public Users() {
-    }
-
-    public Users(int id, String userId, String userName, String name, String profilePicture) {
-        this.id = id;
-        this.userId = userId;
-        this.userName = userName;
-        this.name = name;
-        this.profilePicture = profilePicture;
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return this.userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProfilePicture() {
-        return this.profilePicture;
-    }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
 
 }
