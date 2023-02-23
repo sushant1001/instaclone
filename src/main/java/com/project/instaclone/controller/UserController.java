@@ -4,31 +4,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.instaclone.Entity.Users;
+import com.project.instaclone.service.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    @PostMapping(value="")
-    private boolean submitUser(@RequestBody Users users ){
+    @Autowired
+    UserService userService;
+
+    @PostMapping(value = "")
+    private boolean submitUser(@RequestBody Users users) {
 
         return true;
-        
+
     }
 
     @GetMapping("/{userid}")
-    private Users getUserDetails(@PathVariable("userid") String userId ){
+    private Users getUserDetails(@PathVariable("userid") String userId) {
 
         return new Users();
     }
-    
 
-
-    
 }
