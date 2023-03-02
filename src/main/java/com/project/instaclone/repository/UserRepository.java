@@ -1,8 +1,13 @@
 package com.project.instaclone.repository;
 
-import org.springframework.stereotype.Repository;
+import javax.validation.Valid;
 
-@Repository
-public class UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.project.instaclone.Entity.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findById(@Valid String userId);
 
 }
