@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,12 +75,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public Response<User> updateUser(@PathVariable("id") @Valid Integer id) {
+    public Response<User> updateUser(@RequestBody @Valid User updateUser, @PathVariable("id") @Valid Integer id) {
         Response<User> response = new Response<>();
         try {
-            Optional<User> user = userService.updateUser(id);
-            if (user.isPresent()) {
-                response.setData(user.get());
+            User user = userService.updateUser(id, updateUser);
+            if (user != null) {
+                response.setData(user);
                 response.setResponseCode(HttpStatus.OK.value());
                 response.setStatus(HttpStatus.OK);
                 response.setResponseMessage("User Updated successfully for ID: " + id);
@@ -101,4 +102,22 @@ public class UserController {
         return response;
     }
 
+    @DeleteMapping("/{id}")
+    public Response<Boolean> deleteUser(@PathVariable("id") @Valid Integer id) {
+        Response<Boolean> response = new Response<>();
+        try {
+            boolean user = userService.deleteUser(id);
+            response.setData(user);
+            response.setResponseCode(HttpStatus.NO_CONTENT.value());
+            response.setResponseMessage("User has been deleted successfully!");
+            response.setStatus(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setData(null);
+            response.setResponseCode(HttpStatus.BAD_REQUEST.value());
+            response.setResponseMessage("Invalid request!");
+            response.setStatus(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
 }

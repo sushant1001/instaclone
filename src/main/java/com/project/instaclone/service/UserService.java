@@ -33,9 +33,28 @@ public class UserService {
         }
     }
 
-    public Optional<User> updateUser(@Valid Integer id) {
+    public User updateUser(@Valid Integer id, @Valid User updateUser) throws Exception {
         try {
-            return userRepository.findById(id);
+            Optional<User> user = userRepository.findById(id);
+            if (user.isPresent()) {
+                User updatedUser = user.get();
+                updatedUser.setName(updateUser.getName());
+                updatedUser.setProfilePicture(updateUser.getProfilePicture());
+                updatedUser.setUserName(updateUser.getUserName());
+                return userRepository.save(updatedUser);
+
+            } else {
+                throw new Exception("User does not exist");
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public boolean deleteUser(@Valid Integer id) {
+        try {
+            userRepository.deleteById(id);
+            return true;
         } catch (Exception e) {
             throw e;
         }
